@@ -1,0 +1,36 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+ENV/
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*.DS_Store
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Python
+*.py[co]
+*.egg-info/
+dist/
+build/
