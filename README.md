@@ -99,5 +99,5 @@ This project is licensed under the **MIT License**.
 
 ## 📬 Contact
 **Developer:** [Rohith Uppunuthula](https://github.com/rohith-dev-10), [Rakesh Uppunuthula](https://github.com/RakeshUppunuthula)  
-📧 Email: [Rohits's Mail](uppunuthula.rohith@gmail.com), [Rakesh's Mail](rakesh181000@gmail.com)
+📧 Email:(uppunuthula.rohith@gmail.com),(rakesh181000@gmail.com)
 

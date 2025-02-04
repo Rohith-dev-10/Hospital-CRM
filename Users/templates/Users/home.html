@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare Hospital - Your Health, Our Priority</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c5282;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2c5282;
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 1001;
+        }
+
+        .dropdown-content a {
+            color: #4a5568;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Contact dropdown specific styles */
+        .contact-dropdown {
+            position: relative;
+        }
+
+        .contact-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            min-width: 250px;
+            padding: 1rem;
+            display: none;
+        }
+
+        .contact-menu.show {
+            display: block;
+        }
+
+        .contact-menu h3 {
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-menu p {
+            margin: 0.5rem 0;
+            color: #4a5568;
+        }
+
+        /* Slider styles */
+        .slider {
+            margin-top: 60px;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: #2c5282;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1a365d;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">MedCare</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#appointments">Appointments</a>
+            
+            <!-- Contact section with dropdown -->
+            <div class="contact-dropdown">
+                <a href="#" id="contactBtn">Contact</a>
+                <div class="contact-menu" id="contactMenu">
+                    <h3>Contact Information</h3>
+                    <p>📞 Emergency: 911</p>
+                    <p>📞 Reception: +1 234 567 8900</p>
+                    <p>📧 Email: info@medcare.com</p>
+                    <p>📍 Address: 123 Healthcare Ave</p>
+                </div>
+            </div>
+
+            <!-- Profile section with dropdown -->
+            <div class="dropdown">
+                <div class="profile-icon" id="profileBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="dropdown-content" id="profileDropdown">
+                    <a href="login">Login</a>
+                    <a href="register">Register</a>
+                    <a href="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="slider">
+        <div class="slide active">
+            <img src="/api/placeholder/1920/1080" alt="Hospital Building">
+            <div class="slide-content">
+                <h2>Welcome to MedCare Hospital</h2>
+                <p>Providing Excellence in Healthcare</p>
+                <a href="#appointments" class="cta-button">Book Appointment</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="Medical Team">
+            <div class="slide-content">
+                <h2>Expert Medical Team</h2>
+                <p>Dedicated to Your Well-being</p>
+                <a href="#doctors" class="cta-button">Meet Our Doctors</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="Modern Equipment">
+            <div class="slide-content">
+                <h2>State-of-the-Art Facilities</h2>
+                <p>Advanced Healthcare Technology</p>
+                <a href="#services" class="cta-button">Our Services</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // Slider functionality
+            let currentSlide = 0;
+            const slides = $('.slide');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.removeClass('active');
+                $(slides[index]).addClass('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            setInterval(nextSlide, 5000);
+
+            // Dropdown functionality
+            $('#profileBtn').click(function(e) {
+                e.stopPropagation();
+                $('#profileDropdown').toggleClass('show');
+                $('#contactMenu').removeClass('show');
+            });
+
+            $('#contactBtn').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#contactMenu').toggleClass('show');
+                $('#profileDropdown').removeClass('show');
+            });
+
+            // Close dropdowns when clicking outside
+            $(document).click(function() {
+                $('.dropdown-content, .contact-menu').removeClass('show');
+            });
+        });
+    </script>
+</body>
+</html>
